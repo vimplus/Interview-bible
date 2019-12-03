@@ -1,7 +1,7 @@
 # WEB性能优化
 
-* CSS Sprites
-* LazyLoad Images
+* CSS Sprites（CSS精灵）
+* LazyLoad Images（懒加载）
 * CSS放在页面最上部，javascript放在页面最下面
 * 避免重排重绘
 * 启用压缩，以及静态资源压缩
