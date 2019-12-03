@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        *{padding: 0; margin: 0;}
+    </style>
+    <title>懒加载</title>
+</head>
+<body>
+    <div style="height: 300px; background: #08c;"></div>
+    <ul>
+        <li><img src="./imgs/logo.png" data="./imgs/logo.png" alt=""></li>
+        <li><img src="./imgs/logo.png" data="./imgs/logo.png" alt=""></li>
+        <li><img src="./imgs/logo.png" data="./imgs/logo.png" alt=""></li>
+        <li><img src="./imgs/logo.png" data="./imgs/logo.png" alt=""></li>
+        <li><img src="./imgs/logo.png" data="./imgs/logo.png" alt=""></li>
+        <li><img src="./imgs/logo.png" data="./imgs/logo.png" alt=""></li>
+        <li><img src="./imgs/logo.png" data="./imgs/logo.png" alt=""></li>
+        <li><img src="./imgs/logo.png" data="./imgs/logo.png" alt=""></li>
+        <li><img src="./imgs/logo.png" data="./imgs/logo.png" alt=""></li>
+        <li><img src="./imgs/logo.png" data="./imgs/10.jpg" alt=""></li>
+    </ul>
+
+    <script>
+        const imgs = document.querySelectorAll('img');
+        const clientHeight = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+        function lazyLoad() {
+            // 被滚动条已卷去的高度
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+            for (let i = 0; i < imgs.length; i++) {
+                // 图片在可视区域冒出的高度
+                const x = clientHeight + scrollTop - imgs[i].offsetTop;
+                console.log('-------------------clientHeight', clientHeight);
+                console.log('-------------------scrollTop', scrollTop);
+                console.log('-------------------clientHeight + scrollTop:', clientHeight + scrollTop);
+                console.log(`-------------------offsetTop-${i+1}:`, imgs[i].offsetTop);
+                console.log(`-------------------x-${i+1}:`, x);
+                // 图片在可视区域（x < clientHeight + imgs[i].height是为了防止默认往顶部偏离可视区域的图片初始加载）
+                if (x > 0 && x < clientHeight + imgs[i].height) {
+                    imgs[i].src = imgs[i].getAttribute('data');
+                }
+            }
+        }
+
+        window.addEventListener('scroll', lazyLoad)
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input id="inputBox">
+    <span id="spanBox"></span>
+
+    <script>
+        const inputBox = document.getElementById('inputBox');
+        const spanBox = document.getElementById('spanBox');
+
+        let obj = {
+            id: 'inputCase'
+        };
+        let inputProxy = new Proxy(obj, {
+            get(target, property) {
+                console.log('------------获取信息了------------')
+                return target[key];
+            },
+            set(target, property, newValue) {
+                console.log('------------数据更新了------------');
+                inputBox.value = newValue;
+                spanBox.innerHTML = newValue;
+                // if (property === 'text' && target.id) {
+                //     inputBox.value = newValue;
+                //     spanBox.innerHTML = newValue;
+                //     return true;
+                // }
+                // return false;
+            }
+        })
+
+        inputBox.addEventListener('keyup', function (event) {
+            inputProxy.text = event.target.value;
+        })
+    </script>
+</body>
+</html>

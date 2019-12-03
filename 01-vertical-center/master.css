@@ -1,0 +1,36 @@
+
+.parent {
+    position: relative;
+    width: 600px;
+    height: 300px;
+    background: #ccc;
+}
+
+.child {
+    position: absolute;
+    top: 50%;
+    height: 100px;
+    margin-top: -50px; /* 被居中块级元素高度已知的条件下，设置往上移动自身尺寸的一半 */
+    /* transform: translate(0, -50%);  /* 以自身往上平移50% */
+    background: #f60;
+}
+
+
+
+#box {
+    width: 300px;
+    height: 300px;
+    background: #ddd;
+    position: relative;
+}
+
+#child {
+    width: 200px;
+    height: 100px;
+    background: orange;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    line-height: 100px;
+}

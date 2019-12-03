@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input id="input" />
+    <span id="span"></span>
+    <script>
+        // 实现一个双向数据绑定
+        let obj = {};
+        let input = document.getElementById('input');
+        let span = document.getElementById('span');
+        Object.defineProperty(obj, 'text', {
+            configurable: true,
+            enumerable: true,
+            get() {
+                console.log('获取数据了！');
+                return obj['text'];
+            },
+            set(value) {
+                console.log('数据更新了！');
+                input.value = value;
+                span.innerHTML = value;
+            }
+        })
+
+        input.addEventListener('keyup', function (event) {
+            obj.text = event.target.value;
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="index-throttle.js"></script> -->
+</head>
+<body>
+    <script>
+    function debounce(func, delay) {
+        var interval = delay || 1000;
+        var timer = null;   // 闭包保存的 timer 变量，会常驻内存
+
+        // 返回的匿名函数是事件的回调函数，在事件触发时执行
+        return function () {
+            var context = this;     // 事件的回调函数中，this 指向事件的绑定的 DOM 元素对象(HTMLElement) 
+            var args = arguments;
+            console.log('----------timer:', timer);
+
+            // 如果事件回调函数中存在定时器，则清空上次定时器，重新计时。如果间隔时间到后，处理函数自然就被执行了。 
+            clearTimeout(timer);    // 与节流函数的区别关键点
+            timer = setTimeout(function () {
+                func.apply(context, args);  // 定时器时间到后，执行事件真正的处理函数 handler 
+                // 执行的事件处理函数（handler），需要把调用对象 this 和事件对象 传递过去，就像没被debounce处理过一样 
+            }, interval)
+        }
+    }
+
+    // setTimeout(throttle(console.log, 150), 0);
+    // setTimeout(throttle(console.log, 150), 90);
+    // setTimeout(throttle(console.log, 150), 100);
+    // setTimeout(throttle(console.log, 150), 150);
+    // setTimeout(throttle(console.log, 150), 180);
+    // setTimeout(throttle(console.log, 150), 200);
+    // setTimeout(throttle(console.log, 150), 330);
+    // setTimeout(throttle(console.log, 150), 430);
+    // setTimeout(throttle(console.log, 150), 500);
+
+    var z = 0;
+    window.onresize = debounce(function () {
+        console.log('z:', ++z)
+    }, 500)
+    </script>
+</body>
+</html>

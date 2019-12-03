@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- <script src="index-throttle.js"></script> -->
+</head>
+<body>
+    <script>
+    var i = 1;
+    function throttle(func, delay) {
+        var prevTime = Date.now(); // 初始化一个时间，也作为高频率事件判断事件间隔的变量，通过闭包进行保存。 
+        console.log('-----------prevTime:', prevTime);
+        return function() {
+            var context = this;
+            var args = arguments;
+            var nowTime = Date.now();
+            console.log('-----------i:', i);
+            console.log('-----------nowTime:', nowTime);
+            i++;
+
+            // 如果本次触发和上次触发的时间间隔超过设定的时间
+            if (nowTime - prevTime >= delay) {
+                func.apply(context, ['args']);   // 就执行事件处理函数 （eventHandler）
+                prevTime = nowTime; // 然后将本次的触发时间，作为下次触发事件的参考时间。 
+            }
+        } 
+    }
+
+    // function throttle(func, delay) {
+    //     var timer = null;
+    //     return function () {
+    //         const context = this;
+    //         const args = arguments;
+    //         // 如果定时器未存在，则创建一个定时任务
+    //         if (!timer) {
+    //             timer = setTimeout(function () {
+    //                 func.apply(context, args);
+    //                 clearTimeout(timer);    // 执行后销毁定期任务
+    //                 timer = null;           // 重置定时器
+    //             }, delay)
+    //         }
+    //     }
+    // }
+
+    // setTimeout(throttle(console.log, 150), 0);
+    // setTimeout(throttle(console.log, 150), 90);
+    // setTimeout(throttle(console.log, 150), 100);
+    // setTimeout(throttle(console.log, 150), 150);
+    // setTimeout(throttle(console.log, 150), 180);
+    // setTimeout(throttle(console.log, 150), 200);
+    // setTimeout(throttle(console.log, 150), 330);
+    // setTimeout(throttle(console.log, 150), 430);
+    // setTimeout(throttle(console.log, 150), 500);
+
+    var z = 0;
+    window.onresize = throttle(function () {
+        console.log('z:', ++z)
+    }, 500)
+    </script>
+</body>
+</html>

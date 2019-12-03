@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .parent {
+            display: flex;
+            width: 1000px;
+            height: 300px;
+            align-items: center;        /* 垂直居中 */
+            justify-content: center;    /* 水平居中 */
+            background: #08c;
+        }
+        .child {
+            flex: 0 0 500px;
+            height: 200px;
+            background: #ff0;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="child"></div>
+    </div>
+</body>
+</html>
