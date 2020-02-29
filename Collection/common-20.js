@@ -77,7 +77,9 @@ function create(obj) {
  * new本质
  */
 function _new(func, ...args) {
-    const target = Object.create(func.prototype);
+    const target = {
+        __proto__: func.prototype
+    }
     const res = func.apply(target, args);
     if (typeof(res) === 'object' || typeof(res) === 'function') {
         return res;
@@ -187,7 +189,7 @@ setTimeout(function () {
 function inheritPrototype(parent, child) {
     // 根据父级的prototype重新创建一份
     const prototype = Object.create(parent.prototype);
-    // 将子集替换constructor
+    // 将constructor替换为子集
     prototype.constructor = child;
     // 将父级的prototype赋给子集
     child.prototype = prototype;
@@ -321,7 +323,7 @@ function throtte(func, delay) {
     }
 }
 
-function fn () {
+function fn() {
     console.log('节流')
 }
 window.addEventListener('scroll', throttle(fn, 1000)) 
