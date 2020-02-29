@@ -1,12 +1,11 @@
 
-
 var ulList = document.getElementsByTagName('ul');
 
 for (let i = 0; i < ulList.length; i++) {
     const ul = ulList[i];
     ul.addEventListener('click', function (event) {
-        const target = event.target;
-        const currentTarget = event.currentTarget;
+        const target = event.target;                // 被点击的标签
+        const currentTarget = event.currentTarget;  // 当前绑定的标签
         console.log('target:', target)
         console.log('currentTarget:', currentTarget)
         if (target.nodeName.toLowerCase() === 'li') {
