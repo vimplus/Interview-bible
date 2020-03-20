@@ -19,4 +19,4 @@ let printUser = (property) => {
 }
 
 printUser('name');
-printUser('gender');
+printUser('age');

@@ -14,11 +14,17 @@ function inheritPrototype(superClass, subClass) {
 function Parent() {
     this.name = 'txboy';
     this.play = [1, 2, 3, 4];
+    this.fn = function (s) {
+        console.log(s);
+    }
 }
 
 function Child() {
-    Parent.call(this);
+    Parent.call(this);  // 相当于把父级的属性和方法赋给了Child的this上；
     this.type = 'child';
 }
+
 Child.prototype = Object.create(Parent.prototype);
 Child.prototype.constructor = Child;
+
+const c = new Child();

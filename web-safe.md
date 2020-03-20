@@ -18,3 +18,15 @@
 * 添加一个隐藏的输入框，包含token，服务端验证是否匹配。
 * 使用HTTP refer头部进行判断，如果不是业务域名发送的HTTP请求直接过滤。
 
+## 点击劫持
+* DENY：禁止iframe
+* SAMEORIGIN：只允许相同域名下的网页iframe，同源政策保护
+* ALLOW-FROM: https://example.com：白名单限制（IE）
+* Content-Security-Policy (Chrome, Safari)
+
+## SQL注入防御
+
+* 关闭错误输出
+* 检查数据类型
+* 对数据进行转义（MySQL自身支持的escape）
+* 使用参数化查询（MySQL本身自带的方式，分两步走，首先告知查询语句，然后传入参数）
