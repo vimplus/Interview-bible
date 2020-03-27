@@ -1,15 +1,15 @@
 # WEB性能优化
 
-* CSS Sprites（CSS精灵）
-* LazyLoad Images（懒加载）
-* CSS放在页面最上部，javascript放在页面最下面
-* 避免重排重绘
-* 启用压缩，以及静态资源压缩
-* 减少HTTP请求（HTTP2多路复用），合理利用HTTP缓存
-* 减少DNS查询，减少静态资源请求
-* 使用CDN加速，并适当控制CDN域名数量
-* 减少cookie传输（静态资源使用独立域名访问，避免请求静态资源时发送cookie，减少cookie传输次数）
-* JS方面
+* [CSS精灵] CSS Sprites；
+* [压缩] 启用压缩，以及静态资源压缩；
+* [重排重绘] 避免重排重绘；
+* [JS加载顺序] CSS放在页面最上部，javascript放在页面最下面；
+* [懒加载] LazyLoad Images；
+* [缓存] 合理利用HTTP缓存，减少HTTP请求（HTTP2多路复用）；
+* [DNS] 减少DNS查询，减少静态资源请求；
+* [CDN] 使用CDN加速，并适当控制CDN域名数量；
+* [Cookie] 减少Cookie传输（静态资源使用独立域名访问，避免请求静态资源时发送cookie，减少cookie传输次数）；
+* [代码层面] JS方面：
     - 垃圾回收
     - 事件委托
     - 注意作用域（减少作用域链查找）

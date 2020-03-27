@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box"></div>
+    <script type="text/javascript">
+        //Html 编码
+        function encodeHtml(str) {
+            return str.replace(/"/g, '&quot;')
+                    .replace(/'/g, '&apos;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;');
+        }
+        //Html 解码
+        function decodeHtml(str) {
+            return str.replace(/&quot;/g, '\"')
+                    .replace(/&apos;/g, '\'')
+                    .replace(/&lt;/g, '<')
+                    .replace(/&gt;/g, '>');
+        }
+        
+        const script = '<script>alert("XSS")<\/script>';
+        const encodeStr = '&lt;script&gt;alert(&quot;XSS&quot;)&lt;/script&gt;'
+        const encodeScript = encodeHtml(script);
+
+        const box = document.getElementById('box');
+        // box.append(encodeStr);
+        box.innerHTML = script;
+
+        // document.write(script)
+    </script>
+
+</body>
+</html>
