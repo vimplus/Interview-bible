@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>移动端1px问题</title>
+    <style>
+        /* 方案一：transform缩小50%
+         * 优点：所有场景都能满足，支持圆角
+         * 缺点：对于已经使用伪元素的元素(例如clearfix)，可能需要多层嵌套
+         * */
+        .border-1px {
+            position: relative;
+        }
+
+        .border-1px::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            background: #f00;
+            width: 100%;
+            height: 1px;
+            -webkit-transform: scaleY(0.5);
+            transform: scaleY(0.5);
+            -webkit-transform-origin: 0 0;
+            transform-origin: 0 0;
+        }
+
+        @media (-webkit-min-device-pixel-ratio: 2), (min-device-pixel-ratio: 2) {
+            .border-1px::after {
+                -webkit-transform: scaleY(0.5);
+                transform: scaleY(0.5);
+            }
+        }
+
+        @media (-webkit-min-device-pixel-ratio: 3), (min-device-pixel-ratio: 3) {
+            .border-1px::after {
+                -webkit-transform: scaleY(0.33);
+                transform: scaleY(0.33);
+            }
+        }
+
+        /* 方案二：viewport + rem 实现，JS 动态改变 viewport 中 scale 缩放 */
+
+        /* 方案三：设置1px的渐变背景，50%有颜色，50%透明 */
+        .border-1px-linear {
+            height: 1px;
+            background:
+            linear-gradient(90deg, black, black 50%, transparent 50%) top right / 1px 100% no-repeat,
+            linear-gradient(0, black, black 50%, transparent 50%) bottom right / 100% 1px no-repeat,
+            linear-gradient(-90deg, black, black 50%, transparent 50%) bottom left / 1px 100% no-repeat;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- <div class="border-1px"></div> -->
+
+
+    <div class="border-1px-linear"></div>
+
+</body>
+</html>

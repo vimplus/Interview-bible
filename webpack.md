@@ -21,3 +21,11 @@
 * seal：所有依赖build完成，开始对chunk进行优化（抽取公共模块、加hash等）
 * optimize-chunk-assets：压缩代码
 * emit：把各个chunk输出到结果文件
+
+
+## webpack优化
+* CommonsChunkPlugin - 抽离第三方库单独打js；
+* DLLPlugin 和 DllReferencePlugin - 把第三方库代码分离开，并且每次文件更改的时候，它只会打包该项目自身的代码。通过 DllReferencePlugin 关联 vendor-manifest.json映射文件读取第三方库；
+
+## babel中preset和plugin的区别
+preset是plugin的集合。
