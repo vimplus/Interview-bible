@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>垂直居中</title>
+    <style>
+        .parent {
+            position: relative;
+            
+            width: 500px;
+            height: 300px;
+            background: #08c;
+        }
+
+        /* 高度固定 */
+        .child {
+            width: 250px;
+            
+            height: 100px; 
+            position: absolute;
+            top: 50%;
+            margin-top: -50px;
+
+            background: #fd0;
+        }
+
+        /* 高度不固定 */
+        .child {
+            width: 500px;
+            
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+
+            background: #fd0;
+        }
+
+        /* margin: auto */
+        .child {
+            width: 500px;
+            height: 100px;
+            
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            margin: auto;
+
+            background: #fd0;
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <span class="child">垂直居中</span>
+    </div>
+</body>
+</html>
