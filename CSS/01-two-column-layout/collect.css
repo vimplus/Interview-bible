@@ -1,0 +1,90 @@
+/* https://www.cnblogs.com/padding1015/p/10229285.html */
+
+/* 1.float方式 */
+.wrap .left {
+    width: 200px;
+    float: left;
+}
+
+.wrap .right {
+    /* 三选一 */
+    margin-left: 200px;
+    overflow: hidden;   /* 形成bfc */
+    /* padding-left: 200px; */
+}
+
+
+
+/* 2.absolute方式 */
+.wrap .left {
+    position: absolute;
+}
+
+.wrap .right {
+    /* 二选一 */
+    overflow: hidden;   /* 形成bfc */
+    margin-left: 200px;
+}
+
+/* 3.table方式 */
+/*******************************************
+
+<table class="wrap">
+  <tbody>
+    <td class="left">左侧固定内容</td>
+    <td class="right">右侧内容自适应</td>
+  </tbody>
+</table>
+
+不好意思，6到可以不需要css
+
+********************************************/
+
+/* 4.flex方式 */
+.wrap {
+    display: flex;
+    width: 100%;
+}
+
+.wrap .left {
+    flex: 0 0 200px;
+    height: 600px;
+}
+
+.wrap .right {
+    width: 100%;
+}
+
+/* 5.table-cell - 伪表格布局 */
+.wrap {
+    display: table;     /* 这个可以不设定 */  
+}
+
+.wrap .left {
+    display: table-cell;
+    vertical-align: middle;  /* 如果需要垂直居中 */
+}
+
+.wrap .right {
+    display: table-cell;
+    vertical-align: middle;  /* 如果需要垂直居中 */
+}
+
+
+/* 6.使用inline-block和calc()函数 */
+.wrap {
+    width: 100%;
+    overflow: hidden;
+}
+
+.wrap .left {
+    display: inline-block;
+    width: 200px;
+    height: 600px;
+}
+
+.wrap .right {
+    display: inline-block;
+    height: 600px;
+    width: calc(100% - 200px);
+}
