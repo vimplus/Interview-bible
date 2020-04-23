@@ -1,4 +1,4 @@
-// Question 1
+// Example 1
 async function async1() {
     await async2();
     console.log(1);
@@ -14,7 +14,7 @@ async1();
 console.log(5);
 
 
-// Question 2
+// Example 2
 setTimeout(() => console.log("a"), 0)
 
 var p = new Promise(function (resolve, reject) {
@@ -25,7 +25,8 @@ p.then(() => {
   var begin = Date.now();
   while (Date.now() - begin < 1000);
   console.log("b")
+  
   new Promise(function (resolve, reject) {
-    resolve()
+      resolve()
   }).then(() => console.log("c"))
 });
