@@ -1,5 +1,8 @@
 # Object相关知识笔记
 
+## 哪些类型可以作为对象的key？
+string、symbol
+
 ## 说说toString与valueOf
 https://www.cnblogs.com/liutianzeng/p/10859000.html
 
