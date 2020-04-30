@@ -29,3 +29,9 @@
 
 ## babel中preset和plugin的区别
 preset是plugin的集合。
+
+## babel将ES6转化成ES5的代码遵循什么规范？
+> https://blog.csdn.net/a250758092/article/details/78543440
+
+babel转换后的代码是遵循commonJS规范的，而这个规范，浏览器并不能识别，而nodeJS是commonJS的实现者，因此在node中是可以运行的。
+完整的转换流程为：ES6->ES5(commonJS规范)->浏览器可执行代码
