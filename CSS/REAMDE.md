@@ -1,8 +1,8 @@
 # CSS 常考知识点
 
 ## 盒子模型
-* 标准模式：盒子总宽 = content(width) + padding + border
-* 怪异模式：width = content + padding + border (border-box)
+* 标准模式：盒子总宽高 = content(width/height) + padding + border
+* 怪异模式：width/height = content + padding + border (border-box)
 
 ## BFC
 ### 归纳形成BFC的几个要点：

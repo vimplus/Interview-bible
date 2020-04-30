@@ -20,7 +20,7 @@
 ## CSRF
 
 * 不要在Cookie中存敏感信息，结合localStorage、自定义请求头实现登录态；
-* 双Cookie字段，一个token值（httpOnly）、一个随机字符串自定义请求头与后端协商验证；（不支持localStorage方案）；
+* 双Cookie字段，一个token值（httpOnly）、一个随机字符串自定义请求头与后端协商验证；（不支持localStorage情况下的方案）；
 * Cookie 设置 httponly （防止恶意脚本读取）；
 * 使用HTTP refer头部进行判断，如果不是业务域名发送的HTTP请求直接过滤。
 * 添加一个隐藏的输入框，包含token，服务端验证是否匹配。
