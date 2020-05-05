@@ -23,3 +23,11 @@ let child = new Child(1)
 child.getValue() // 1
 child instanceof Parent // true
 ```
+
+
+### 下面代码输出啥？为什么？
+```JavaScript
+var a = function() {}
+var b = a.bind(null)
+```
+箭头函数和bind返回的函数没有prototype属性，其他函数都有prototype，网上实现的bind都是错的。
