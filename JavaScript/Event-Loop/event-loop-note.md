@@ -6,7 +6,7 @@
 ### 宏任务和微任务
 优先级：执行栈中的代码 > 微任务 > 宏任务
 
-* 微任务：promise、Object.observe、process.nextTick、MutationObserver
+* 微任务：promise、process.nextTick（Node独有）、Object.observe(废弃)、MutationObserver
 * 宏任务：整体代码script、setTimeout、setInterval、setImmediate、messageChannel
 
 #### 执行栈

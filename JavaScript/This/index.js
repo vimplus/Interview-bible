@@ -1,3 +1,4 @@
+// Example 1
 var a = 1;
 var obj = {
     a: 2,
@@ -7,4 +8,15 @@ var obj = {
         })()
     }
 }
-obj.fn();
+obj.fn();   // 2
+
+
+// Example 2
+var x = 10;
+var o = {
+    x: 20,
+    func: () => {
+        console.log(this.x);
+    }
+}
+o.func();   // 10

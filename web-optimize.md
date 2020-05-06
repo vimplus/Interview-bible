@@ -15,3 +15,37 @@
     - 注意作用域（减少作用域链查找）
     - 使用高效的方法
     - 字符串拼接（相比更为高效的做法是将需要拼接的字符串放在数组中最后调用其 join方法得到结果）
+
+
+## 打包优化
+* webpack
+    - loader
+    - dll（缓存，没有变化的文件不需重新打包）
+    - happypack（利用多线程）
+    - 压缩代码
+    - tree shaking
+    - scope hoisting
+    - code splitting
+* 图片base64、CDN
+
+## 网络优化
+* DNS
+    * DNS预解析
+```html
+<meta http-equiv="x-dns-prefetch-control" content="on" />
+<link rel="dns-prefetch" href="http://hm.baidu.com" />
+```
+
+* CDN（相当于多个快递网点）
+* 缓存
+* preload/prefetch/懒加载
+* ssr
+
+## 代码优化
+* loading/骨架屏
+* web worker
+* 虚拟列表
+* 懒加载
+* DOM/style批量更新
+* ……
+
