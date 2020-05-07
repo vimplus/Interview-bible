@@ -18,3 +18,15 @@ https://www.cnblogs.com/liutianzeng/p/10859000.html
 * 如果返回的不是原始值，会继续执行toString方法；
 * 如果返回的还不是原始值，那么会报错；
 * 如果有指定转换类型时，情况又会有所不同。
+
+### 以下代码中obj输出什么?
+
+```JavaScript
+var arr = [function() {console.log('x')}, function() {}, {}];
+var obj = {};
+obj[arr[0]] = 1;
+
+{"function() {console.log('x')}": 1}
+```
+分析：函数隐式转化会将函数本身的代码转成字符串，对象的隐式转化会转成`[object Object]`;
+
