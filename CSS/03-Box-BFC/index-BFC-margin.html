@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrap {
+            width: 600px;
+            background: #08c;
+        }
+        .child {
+            height: 100px;
+            margin: 10px 0;
+            background: #6c0;
+        }
+        .child-bfc {
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="child">a</div>
+        <div class="child">b</div>
+        <div class="child-bfc">
+            <div class="child">c</div>
+        </div>
+    </div>
+</body>
+</html>
