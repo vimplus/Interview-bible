@@ -52,3 +52,7 @@ function LinkedList() {
 
 var pets = new LinkedList();
 console.log('pets:', pets);
+
+pets.insert('cat', 'head');
+pets.insert('dog', 'cat');
+pets.insert('mouse', 'dog');
