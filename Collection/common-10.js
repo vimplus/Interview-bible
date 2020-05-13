@@ -36,3 +36,11 @@ function minus(a, b) {
 '120000000.88'.replace(/\B(?=(\d{3})+\.)/g, ',');
 
 
+
+function fill(arr, length, value, index = 0) {
+    if (index + 1 > length) return;
+    arr.push(value);
+    fill(arr, length, value, index + 1);
+}
+var arr = [];
+fill(arr, 5, 'xixix');
