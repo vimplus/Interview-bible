@@ -75,3 +75,20 @@ p.then(() => {
       resolve()
   }).then(() => console.log("c"))
 });
+
+
+// Example 5
+setTimeout(() => { console.log(0) }, 0);
+new Promise((res) => setTimeout(res, 0)).then(() => {
+    console.log(1);
+    setTimeout(() => { console.log(2) }, 0);
+    new Promise(ret => ret()).then(() => { console.log(3) });
+})
+
+setTimeout(() => { console.log(4) }, 0);
+new Promise(res => res()).then(() => {
+    console.log(5)
+});
+
+// 5 0 1 3 4 2
+// 5 0 4 1 3 2 (node < 11.0)
