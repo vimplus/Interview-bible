@@ -37,10 +37,11 @@ function minus(a, b) {
 
 
 
+// 实现一个 fill 函数，不能用循环。
 function fill(arr, length, value, index = 0) {
     if (index + 1 > length) return;
     arr.push(value);
     fill(arr, length, value, index + 1);
 }
 var arr = [];
-fill(arr, 5, 'xixix');
+fill(arr, 5, 'xxx');
