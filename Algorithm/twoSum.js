@@ -1,5 +1,5 @@
 /**
- * 从数组中找出两数之和等于sum
+ * 从数组中找出[两数之和]等于sum
  */
 function twoSum(array, target) {
     let map = {}
