@@ -1,5 +1,12 @@
 # 移动端1px解决方案
 
+我们说的1像素，就是指CSS中的1 CSS像素。
+
+比如我们在页面中画了一条线，但是在有些手机上看着明显很粗，为什么？
+因为这个1px，在有些设备上（比如：dpr=3），就是用了横竖都是3的物理像素矩阵（即：3x3=9 CSS像素）来显示这1px，导致在这些设备上，这条线看上去非常粗！
+其实在在中手机上应该是`1/3px`显示这条线。
+
+
 ## 方案一：transform 缩放
 > https://github.com/airyland/vux/blob/v2/src/styles/weui/base/mixin/setOnepx.less
 * 优点：所有场景都能满足，支持圆角

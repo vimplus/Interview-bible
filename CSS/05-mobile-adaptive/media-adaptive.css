@@ -1,0 +1,37 @@
+/* 常用的一些设备像素查询区间 */
+@media screen and (min-width:350px){
+    html{font-size:342%;}
+}
+@media screen and (min-width:360px){
+    html{font-size:351.56%;}
+}
+@media screen and (min-width:375px){
+    html{font-size:366.2%;}
+}
+@media screen and (min-width:384px){
+    html{font-size:375%;}
+}
+@media screen and (min-width:390px){
+    html{font-size:380.85%;}
+}
+@media screen and (min-width:393px){    /* 小米NOTE */
+    html{font-size:383.79%;}
+}
+@media screen and (min-width:410px){
+    html{font-size:400%;}
+}
+@media screen and (min-width:432px){    /* 魅族3 */
+    html{font-size:421.875%;}
+}
+@media screen and (min-width:480px){
+    html{font-size:469%;}
+}
+@media screen and (min-width:540px){
+    html{font-size:527.34%;}
+}
+@media screen and (min-width:640px){
+    html{font-size: 625%;}
+}
+@media screen and (width:720px){
+    html{font-size: 703.125%;}
+}

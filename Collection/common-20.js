@@ -285,10 +285,10 @@ class Route {
  * rem基本设置
  */
 function setRem() {
-    let doc =  document.documentElement;
-    let width = doc.getBoundingClientRect().width;
+    let docEl =  document.documentElement;
+    let width = docEl.getBoundingClientRect().width;
     let rem = width / 75;
-    doc.style.fontSize = `${rem}px`;
+    docEl.style.fontSize = `${rem}px`;
 }
 
 window.addEventListener('resize', setRem);

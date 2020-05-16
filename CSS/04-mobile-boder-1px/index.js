@@ -1,6 +1,6 @@
 // alert(window.devicePixelRatio);  // 获取设备dpr
 
-
+// 方案二：viewport + rem 实现，JS 动态改变 viewport 中 scale 缩放
 (function () {
     // 解决不同手机dpr不一致的适配问题(解决了1px的问题) 
     var scale = 1.0; 

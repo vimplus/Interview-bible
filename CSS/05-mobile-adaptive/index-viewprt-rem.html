@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        var dpr = 0;
+        var scale = 0;
+        var isIPhone = window.navigator.appVersion.match(/iphone/gi);
+        var devicePixelRatio = window.devicePixelRatio;
+        if (isIPhone) {
+            // iOS下，对于2和3的屏，用2 or 3倍的方案，其余的用1倍方案
+            if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {                
+                dpr = 3;
+            } else if (devicePixelRatio >= 2 && (!dpr || dpr >= 2)){
+                dpr = 2;
+            } else {
+                dpr = 1;
+            }
+        } else {
+            // 其他(Android)设备下，仍旧使用1倍的方案
+            dpr = 1;
+        }
+        scale = 1 / dpr;
+        
+        console.warn('-----scale:', scale);
+
+        // 动态设置viewport
+        var doc = window.document;
+        var docEl = doc.documentElement;
+        var metaEl = doc.querySelector('meta[name="viewport"]');
+        metaEl.setAttribute('name', 'viewport');
+        metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+
+        // 设置rem
+        function refreshRem(){
+            var width = docEl.getBoundingClientRect().width;
+            console.warn('width:', width);
+            if (width / dpr > 750) {
+                width = 750 * dpr;
+                console.warn('-----reset width-----');
+            }
+            var rem = width / 10;
+            console.log('dpr:', dpr);
+            console.log('width:', width);
+            console.log('rem:', rem);
+            docEl.style.fontSize = rem + 'px';
+        }
+        refreshRem();
+    </script>
+    <style>
+        .box-1 {
+            width: 1rem;
+            height: 1rem;
+            background: #6c0;
+            margin-bottom: 20px;
+        }
+        .box-2 {
+            width: 10rem;   /* 整个屏幕的宽度 */
+            height: 1rem;
+            background: #08c;
+        }
+
+        
+        /**
+            @function px2rem($px, $base: 75) {
+                @return ($px / $base) * 1rem;
+            }
+         */
+        
+         /* 稿子上量得某按钮宽60px,高20px */
+        .box-3 {
+            width: px2rem(60);
+            height: px2rem(20);
+            background: #f90;
+        }
+    </style>
+</head>
+<body>
+    <div class="box-1"></div>
+    <div class="box-2"></div>
+    <div class="box-3"></div>
+</body>
+</html>
