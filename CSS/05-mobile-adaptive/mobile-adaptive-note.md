@@ -1,19 +1,139 @@
 # 移动端的几种适配方法
 开发移动端网站，我们都离不开页面适配这个问题，今天我们来总结一下移动端有哪几种实现方案，以及分别的实现原理。
 
+## 几个概念
+聊到移动端适配，我们不得不先来了解一下`物理像素(设备分辨率)`、`设备独立像素(逻辑像素)`、`设备像素比(dpr)`、`CSS像素`、`viewport`这几个概念。
+### 物理像素
+
+**物理像素**是显示设备中一个最微小的物理部件，通俗讲其实就是厂商在出厂时为设备设计的屏幕分辨率，这个值是固定的。例如`iPhone 6`的分辨率为`750 x 1334`，这个值就是它的物理像素。
+
+### 设备独立像素
+
+**设备独立像素**（DIP: Device independent Pixel）也称为逻辑像素，可以认为是计算机坐标系统中的一个点，这个点代表一个可以由程序使用的虚拟像素(比如说CSS像素)，然后由相关系统转换为物理像素。
+
+### 设备像素比
+
+**设备像素**(dpr: device pixels ratio)定义了**物理像素**和**设备独立像素**的对应关系，即：
+
+> 设备像素比（dpr） ＝ 物理像素 / 设备独立像素
+
+以`iPhone 6`为例：
+
+> iPhone 6的物理像素为: 750 x 1334，
+> 设备宽和高为375 x 667，可以理解为：设备独立像素，
+> 因此iPhone 6的`设备像素比(dpr)`为`2`。
+
+在JavaScript中我们可以通过：`window.devicePixelRatio`获取`dpr`。
+
+### CSS像素
+
+简单的说，**CSS像素**是在CSS、JavaScript中使用的一个长度单位，单位`px`。
+
+在PC端Web浏览器中CSS的`1个像素`往往都是对应着电脑屏幕的`1个物理像素`，这可能会造成一个错觉，那就是CSS中的像素就是设备的物理像素。
+
+实际上并非如此，CSS中的像素只是一个抽象的单位，在不同的设备或不同的环境中，CSS中的`1px`所代表的设备物理像素是不同的。
+
+比如`iPhone 6`的物理像素宽为750，如果没有设置布局视口时，viewport为980px, 
+> 此时：1物理像素长度 = 980/750px =1.3067px的长度
+
+由于像素都是点阵的，故`1物理像素`相当于`1.3067px * 1.3067px方格`。
+当在`meta`中设置了如下配置时：
+
+```html
+<meta name="viewport" content="width=device-width">
+```
+
+相当于把布局视口设置为**设备的宽度**(即上面讲到的**设备独立像素**)， 对于`iPhone 6`就是375px。
+> 此时：1物理像素长度 = 375/750px = 0.5px的长度，故1物理像素相当于`0.5px * 0.5px`的方格。
+
+综上几个概念我们可以推断出：
+
+> CSS像素 = 设备独立像素 = 逻辑像素
+
+### viewport
+
+`viewport`可以分为三类：`layout viewport` 、 `visual viewport` 和 `ideal viewport` 。
+
+####layout viewport（布局视口）
+
+在移动互联网没有普及之前，大部分Web页面都是基于PC电脑端浏览而设计的，根本没有做移动端的适配。如果在手机上打开PC端的网站，会出现很长的滚动条。随着移动端的发展，为了在手机上能够快速兼容未做适配的PC端Web页面，在小屏幕下也能更好的显示PC端网页，浏览器厂商将`layout viewport`设置的很大，比实际屏幕要宽很多，一般在`768px ~ 1024px` 之间，最常用的宽度就是 `980`，这样用户就能看到绝大部分内容，并根据具体内容选择缩放。
+
+在`JavaScript`中可以通过：
+
+> `document.documentElement.clientWidth/clientHeight` 获取 `layout viewport`的大小。
+
+#### visual viewport（视觉视口）
+
+`visual viewport`指的是浏览器可视区域的大小，即用户可以看到的网页区域。(其宽度继承的布局视口宽度)
+
+在`JavaScript`中可以通过：
+
+> `window.innerWidth/innerHeight` 获取 `visual viewport`的大小。
+
+#### ideal viewport（理想视口）
+
+`layout viewport`虽然解决了移动端查看PC端网页的问题，但是完全忽略了手机本身的尺寸，用户查看页面需要进行缩放，所以苹果公司引入了`ideal viewport`——移动设备的理想`viewport`，用来表示设备的屏幕宽度。
+
+`ideal viewport`并没有一个固定的值，不同的设备拥有不同的`ideal viewport`尺寸大小。
+
+在`JavaScript`中可以通过：
+
+> `window.screen.width/height` 获取 `ideal viewport`的大小。
+
+移动设备默认的`viewport`是`layout viewport`，也就是那个比屏幕要宽的`viewport`。我们在开发移动设备的网站时，最常见的一个动作就是把下面这段代码复制到我们的`head`标签中：
+
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+```
+
+该`meta`标签的作用是让当前`viewport`的宽度等于设备的宽度，其实就是让默认的`layout viewport`等于屏幕宽度(`ideal viewport`)，同时不允许用户手动缩放。
+
+##### 关于meta viewport的更多知识
+
+* 不同方式的`layout viewport`设置
+
+  下面这段代码其实效果是一样的，都可以让：`layout viewport` 等于 `ideal viewport`。
+
+  ```html
+  <meta name="viewport" content="width=device-width">
+  <meta name="viewport" content="initial-scale=1.0">
+  ```
+
+  惊呆……因为从理论上来讲，这句代码的作用只是不对当前的页面进行缩放，也就是页面本该是多大就是多大。那为什么会有 `width=device-width` 的效果呢？
+
+  要想清楚这件事情，首先你得弄明白这个缩放是相对于什么来缩放的，因为这里的缩放值是1，也就是没缩放，但却达到了 `ideal viewport` 的效果，所以:
+
+  > 说明`initial-scale ` 是基于`ideal viewport`的大小进行缩放的。
+
+  当对`ideal viewport`进行100%的缩放，也就是缩放值为1的时候，不就得到了 `ideal viewport` 吗？事实证明，的确是这样的。
+
+  
+
+* 关于缩放以及initial-scale的默认值
+
+  > visual viewport宽度 = ideal viewport宽度 / 当前缩放值
+  >
+  > 当前缩放值 = ideal viewport宽度 / visual viewport宽度
+
+  在iPhone和iPad上，无论你给viewport设的宽的是多少，如果没有指定默认的缩放值，则iPhone和iPad会自动计算这个缩放值，以达到当前页面不会出现横向滚动条(或者说viewport的宽度就是屏幕的宽度)的目的。
+
+没想到移动端适配需要了解这么多概念，学不动了(-_-)……了解了以上概念之后，下面我们来正式看看适配的问题。
+
 ## 页面适配主要解决的问题
 1. 元素自适应问题
-2. 文字rem问题
-3. 高清图问题
-4. 1像素问题
-5. 横竖屏显示问题
-6. 手机字体缩放问题
+2. 文字rem问题（文字尽量用px，个别需要根据页面适配的除外，例如按钮中的文字）
+3.  高清图问题（srcset）
+4. 1像素问题（transform：scaleY(0.5)）
+5. 横竖屏显示问题(媒体查询检测、JS检测：`window.orientation(屏幕旋转方向)`)
+6. 手机字体缩放问题（对比页面实际字号大小）
 
 ## 适配方案总结
 * 通过媒体查询(`media query`)的方式，即：CSS3的`@media + rem`;
 * 以天猫首页为代表的 flex 弹性布局;
 * 以淘宝首页为代表的 `rem + viewport`方案(`flexible.js`);
 * `vw/vh`方案
+
+我们以上的方案其实主要解决第1个：元素自适应问题，2-6的问题大家可以自行查询相关解决方案，这里就不做详细解读了。下面我们来看看每一个方案的具体实现：
 
 ## @media + rem
 **Media Query**的方式主要是通过查询设备的宽度来执行不同的`css`代码，最终达到界面的适配。
@@ -147,15 +267,15 @@ vh: `viewport height(可视窗口高度)`
   @return ($px/($base/100)) + vh;
 }
 /*头像宽42px,高42px*/
-.avantar{
+.avantar {
     width:px2vw(42);
     heightx:px2vh(42);
 }
 ```
 
+
 ## 参考文献
 
 * [移动端的3种适配方法](https://segmentfault.com/a/1190000019677612)
 * [移动端H5解惑-页面适配](https://juejin.im/post/5b6503dee51d45191e0d30d2)
-
-
+* [CSS像素、物理像素、逻辑像素、设备像素比、PPI、Viewport](https://www.cnblogs.com/zaoa/p/8630393.html)

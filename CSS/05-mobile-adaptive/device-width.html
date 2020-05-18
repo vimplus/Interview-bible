@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        
+        var clientWidth = document.documentElement.clientWidth; // layout viewport（大部分手机上默认：980）
+        var innerWidth = window.innerWidth;                     // visual viewport
+        var screenWidth = window.screen.width;                  // ideal viewport
+        
+        console.log('deviceWidth:', clientWidth);   // 获取手机屏幕宽度（前提是设置了：width=device-width）
+        console.log('innerWidth:', innerWidth);     
+        console.log('screenWidth:', screenWidth);   
+
+        // 需要注意的是：`document.documentElement.clientWidth` 这个语句
+        // 能获取到的准确手机尺寸的前提是建立在html中设置了如下标签：
+        // <meta name="viewport" content="width=device-width">
+        // 要不然获取到的结果将始终是：980（layout viewport default size）
+    </script>
+</body>
+</html>
