@@ -292,4 +292,5 @@ vh: `viewport height(可视窗口高度)`
 
 * [移动端的3种适配方法](https://segmentfault.com/a/1190000019677612)
 * [移动端H5解惑-页面适配](https://juejin.im/post/5b6503dee51d45191e0d30d2)
+* [移动端页面适配———多方案解析](https://www.jianshu.com/p/3b45aa981e77)
 * [CSS像素、物理像素、逻辑像素、设备像素比、PPI、Viewport](https://www.cnblogs.com/zaoa/p/8630393.html)
