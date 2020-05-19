@@ -35,3 +35,23 @@ preset是plugin的集合。
 
 babel转换后的代码是遵循commonJS规范的，而这个规范，浏览器并不能识别，而nodeJS是commonJS的实现者，因此在node中是可以运行的。
 完整的转换流程为：ES6->ES5(commonJS规范)->浏览器可执行代码
+
+
+## Less和Sass有什么区别？
+* Less环境较Sass简单：Less基于JavaScript，Sass基于Ruby；
+* Less使用较Sass简单：Less只是 CSS 语法的基础上，为 CSS 加入程序式语言的特性；
+* 从功能出发，Sass较Less略强大一些；
+    - sass有函数的概念；
+    - Sass支持条件语句，而Less不支持；
+    - Sass支持输出设置，Less没有输出设置，Sass提供4种输出选项：nested, compact, compressed 和 expanded；
+* 语法上的一些区别，比如定义变量：LESS 采用`@`符号，SCSS 采用`$`符号。
+
+### 共同点
+1、混入(Mixins)：class中的class；
+2、参数混入：可以传递参数的class，就像函数一样；
+3、嵌套规则：Class中嵌套class，从而减少重复的代码；
+4、运算：CSS中用上数学；
+5、颜色功能：可以编辑颜色；
+6、名字空间(namespace)：分组样式，从而可以被调用；
+7、作用域：局部修改样式；
+8、JavaScript 赋值：在CSS中使用JavaScript表达式赋值。
