@@ -10,6 +10,7 @@
         var scale = 0;
         var isIPhone = window.navigator.appVersion.match(/iphone/gi);
         var devicePixelRatio = window.devicePixelRatio;
+        console.log('devicePixelRatio:', devicePixelRatio);
         if (isIPhone) {
             // iOS下，对于2和3的屏，用2 or 3倍的方案，其余的用1倍方案
             if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {                
@@ -32,7 +33,7 @@
         var docEl = doc.documentElement;
         var metaEl = doc.querySelector('meta[name="viewport"]');
         metaEl.setAttribute('name', 'viewport');
-        metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
+        metaEl.setAttribute('content', 'width=device-width, initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
 
         // 设置rem
         function refreshRem(){
@@ -43,7 +44,7 @@
                 console.warn('-----reset width-----');
             }
             var rem = width / 10;
-            console.log('dpr:', dpr);
+            
             console.log('width:', width);
             console.log('rem:', rem);
             docEl.style.fontSize = rem + 'px';

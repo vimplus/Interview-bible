@@ -120,16 +120,16 @@
 没想到移动端适配需要了解这么多概念，学不动了(-_-)……了解了以上概念之后，下面我们来正式看看适配的问题。
 
 ## 页面适配主要解决的问题
-1. 元素自适应问题
-2. 文字rem问题（文字尽量用px，个别需要根据页面适配的除外，例如按钮中的文字）
-3.  高清图问题（srcset）
-4. 1像素问题（transform：scaleY(0.5)）
+1. 元素自适应问题（本文主要讲解的方案）
+2. 文字rem问题（文字尽量用`px`，个别需要根据页面适配的除外，例如按钮中的文字）
+3.  高清图问题（`srcset`、JS动态设置`data-src2x`、媒体查询`-webkit-min-device-pixel-ratio:2`）
+4. 1像素问题（`transform：scaleY(0.5)`）
 5. 横竖屏显示问题(媒体查询检测、JS检测：`window.orientation(屏幕旋转方向)`)
 6. 手机字体缩放问题（对比页面实际字号大小）
 
 ## 适配方案总结
 * 通过媒体查询(`media query`)的方式，即：CSS3的`@media + rem`;
-* 以天猫首页为代表的 flex 弹性布局;
+* 以天猫首页为代表的 `flex` 弹性布局;
 * 以淘宝首页为代表的 `rem + viewport`方案(`flexible.js`);
 * `vw/vh`方案
 
@@ -137,6 +137,7 @@
 
 ## @media + rem
 **Media Query**的方式主要是通过查询设备的宽度来执行不同的`css`代码，最终达到界面的适配。
+
 结合`rem`的原理，核心代码如下：
 
 ```css
@@ -184,9 +185,13 @@
 
 随着屏幕宽度变化，页面也会跟着变化，效果就和PC页面的流体布局差不多，在哪个宽度需要调整的时候使用响应式布局调调就行（比如网易新闻），这样就实现了『适配』。
 
+### 原理总结：
+
+此方案的原理就是根据`flex`弹性布局的特性来实现页面的适配。
+
 
 ## rem + viewport方案
-根据不同屏幕动态写入`font-size`和`viewport`，以`rem`作为宽度单位。
+根据不同设备获取`dpr`动态写入`font-size`和`viewport`，以`rem`作为宽度单位。
 
 手淘的`flexible.js`也是`rem`适配的，它是将设备分成`10`份，`1rem`等于`1/10`。分析其中部分代码：
 
@@ -243,6 +248,12 @@ refreshRem();
 }
 ```
 
+### 原理总结：
+
+1. 根据设备像素比（`window.devicePixelRatio`）计算缩放比，动态生成 `viewport`，必要时也可以给`<html>`设置`data-dpr`；
+2. 屏幕宽度设置 `rem`的大小，即给`<html>`设置`font-size`，适配的元素都使用 `rem` 为单位，不需要适配的元素还是使用 `px` 为单位；
+3. 使用Hack手段用`rem`模拟`vw`特性。
+
 ## vw/vh方案
 
 vw: `viewport width(可视窗口宽度)`
@@ -266,13 +277,16 @@ vh: `viewport height(可视窗口高度)`
 @function px2vh($px, $base: 220) {
   @return ($px/($base/100)) + vh;
 }
-/*头像宽42px,高42px*/
+/*头像宽36px,高36px*/
 .avantar {
-    width:px2vw(42);
-    heightx:px2vh(42);
+    width:px2vw(36);
+    heightx:px2vh(36);
 }
 ```
 
+### 原理总结：
+
+这个方案其实了解一下`vw/vh`这个单位的原理就明白了，首先定死 `viewport`，然后使用 `vw` 取代 `rem`。
 
 ## 参考文献
 
