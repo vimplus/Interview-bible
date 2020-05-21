@@ -104,6 +104,13 @@ css加载**会**阻塞后面js语句的执行
 ## 移动端一像素的原理
 border设为none, height设1px, Y轴缩放: transform:scaleY(0.5)
 
+## 移动端点击穿透问题的解决方案？
+由来：某个弹窗，点击关闭按钮的时候，弹窗关闭后，同时也触发到弹窗底下的某个input焦点，这是由于移动端click事件300ms延迟导致的。
+
+* 遮挡：生成一个透明的元素，在一定延迟后再移除此元素；
+* pointer-events：点击A元素后给需要防穿透的B元素设置`pointer-events:none`, 400ms后再重新设置`pointer-events:auto`；
+* 使用fastclick：采用touchstart和touchend模拟click。
+
 
 ## will-change
 * 想流畅的使用 GPU 做 CSS 动画的话，加上 will-change 属性吧。

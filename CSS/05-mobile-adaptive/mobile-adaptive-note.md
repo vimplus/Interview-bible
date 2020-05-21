@@ -54,7 +54,7 @@
 
 `viewport`可以分为三类：`layout viewport` 、 `visual viewport` 和 `ideal viewport` 。
 
-####layout viewport（布局视口）
+#### layout viewport（布局视口）
 
 在移动互联网没有普及之前，大部分Web页面都是基于PC电脑端浏览而设计的，根本没有做移动端的适配。如果在手机上打开PC端的网站，会出现很长的滚动条。随着移动端的发展，为了在手机上能够快速兼容未做适配的PC端Web页面，在小屏幕下也能更好的显示PC端网页，浏览器厂商将`layout viewport`设置的很大，比实际屏幕要宽很多，一般在`768px ~ 1024px` 之间，最常用的宽度就是 `980`，这样用户就能看到绝大部分内容，并根据具体内容选择缩放。
 
@@ -195,7 +195,7 @@
 
 手淘的`flexible.js`也是`rem`适配的，它是将设备分成`10`份，`1rem`等于`1/10`。分析其中部分代码：
 
-```JavaScript
+```javascript
 var dpr = 0;
 var scale = 0;
 var isIPhone = window.navigator.appVersion.match(/iphone/gi);
@@ -221,9 +221,10 @@ var metaEl = doc.querySelector('meta[name="viewport"]');
 metaEl.setAttribute('name', 'viewport');
 metaEl.setAttribute('content', 'initial-scale=' + scale + ', maximum-scale=' + scale + ', minimum-scale=' + scale + ', user-scalable=no');
 ```
+
 以上代码当`dpr`(设备物理像素和设备独立像素比)为`3`时候，页面缩入`1/3,` `dpr`为`2`时，页面绽放`1/2`。
 
-```JavaScript
+```javascript
 function refreshRem(){
     var width = docEl.getBoundingClientRect().width;
     if (width / dpr > 540) {
@@ -241,7 +242,7 @@ refreshRem();
 @function px2rem($px, $base: 75) {
     @return ($px / $base) * 1rem;
 }
-/* 稿子上量得某按钮宽60px,高20px */
+/* 设计稿上量得某个按钮宽60px,高20px */
 .btn{
     width:px2rem(60);
     height:px2rem(20);
@@ -291,6 +292,6 @@ vh: `viewport height(可视窗口高度)`
 ## 参考文献
 
 * [移动端的3种适配方法](https://segmentfault.com/a/1190000019677612)
-* [移动端H5解惑-页面适配](https://juejin.im/post/5b6503dee51d45191e0d30d2)
+* [移动端H5解惑-页面适配（二）](https://juejin.im/post/5b6503dee51d45191e0d30d2)
 * [移动端页面适配———多方案解析](https://www.jianshu.com/p/3b45aa981e77)
 * [CSS像素、物理像素、逻辑像素、设备像素比、PPI、Viewport](https://www.cnblogs.com/zaoa/p/8630393.html)
