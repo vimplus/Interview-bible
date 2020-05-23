@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body id="bodyNode">
+    <ul id="ulNode">
+        <li id="liNode">01</li>
+        <li>02</li>
+        <li>03</li>
+    </ul>
+    <script>
+        var bodyNode = document.getElementById('bodyNode');
+        var ulNode = document.getElementById('ulNode');
+        var liNode = document.getElementById('liNode');
+
+        // ulNode.addEventListener('click', function (event) {
+        //     const target = event.target;                // 被点击的标签
+        //     if (target.nodeName.toLowerCase() === 'li') {
+        //         // console.log(target.innerText)
+        //         alert('li')
+        //     }
+        //     if (target.nodeName.toLowerCase() === 'span') {
+        //         alert('span')
+        //     }
+            
+        // }, false);
+
+        liNode.addEventListener('click', function (event) {
+            const target = event.target;
+            alert('liNode');
+            // event.stopPropagation();    // 阻止事件传播（包括：冒泡/捕获）
+        }, false)
+
+        ulNode.addEventListener('click', function (event) {
+            const target = event.target;
+            alert('ulNode');
+        }, false)
+
+        bodyNode.addEventListener('click', function (event) {
+            alert('bodyNode');
+        }, false)
+    </script>
+</body>
+</html>

@@ -10,7 +10,7 @@
     <input id="inputBox" type="text">
     <script>
         var inputBox = document.getElementById('inputBox');
-        // 原生只注册一个onchange的话，需要在失去焦点的时候才能触发这个事件，所以这个原生事件的缺陷react也帮我们弥补了。
+        // 原生只注册一个change的话，需要在失去焦点的时候才能触发这个事件，所以这个原生事件的缺陷react也帮我们弥补了。
         inputBox.addEventListener('change', function (event) {
             console.log('value:', event.target.value);
         })
