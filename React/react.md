@@ -235,5 +235,5 @@ React事件机制利用的事件委托机制，将事件绑定在最外层的doc
 
 ## React.memo、useCallback、useMemo
 * `React.memo`：类似于PureComponent，在给定相同`props`的情况下渲染相同的结果，并且通过**记忆组件渲染结果**的方式来提高组件的性能表现；
-* useCallback：缓存函数——把函数以及依赖项作为参数传入 `useCallback`，它将返回该回调函数的 memoized 版本，这个 memoizedCallback 只有在依赖项有变化的时候才会更新。；
-* `useMemo` 的使用场景主要是**用来缓存计算量比较大的函数结果**，可以避免不必要的重复计算。
+* useCallback：缓存函数——把**函数**以及**依赖项**作为参数传入 `useCallback`，它将返回该回调函数的 memoized 版本，这个 memoizedCallback **只有在依赖项有变化的时候才会更新**。；
+* `useMemo`: 缓存值——使用场景主要是**用来缓存计算量比较大的函数结果**，可以避免不必要的重复计算。
