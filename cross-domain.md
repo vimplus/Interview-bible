@@ -38,6 +38,17 @@ CORS，在公司里面用的比较多，对于CORS的服务端配置，一般有
 
 这种场景下，典型的CDN的环境很难自由配置，而又必须依赖后台接口数据，这时候最好的 办法就是后台代码开发时，就支持跨域。
 
+#### 常用的响应头配置
+
+```javascript
+ctx.set('Access-Control-Allow-Origin', '*');
+ctx.set('Access-Control-Allow-Credentials', true);
+// 用于预检请求中，列出了将会在正式请求的 Access-Control-Request-Headers 字段中出现的首部信息。
+ctx.set('Access-Control-Allow-Headers', 'x-requested-with,content-type');   
+ctx.set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+ctx.set('Access-Control-Max-Age', 1728000);
+```
+
 ### PROXY代理
 
 `PROXY代理` 的方法就是通过代理层做一次中间的转发，使得对于浏览器来说，就不存在跨域的问题。
