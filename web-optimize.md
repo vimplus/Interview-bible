@@ -51,9 +51,9 @@
 * ……
 
 
-## 总结概括
-* 减少请求（CSS精灵、图片base64、http缓存、CDN）
-* 优化请求（DNS预解析、减少Cookie传输、开启Gzip压缩、CDN）
+## 总结概括(四优化一减少)
+* 减少请求（减少DNS查询，减少HTTP请求、合并文件、CSS精灵、图片base64、http缓存、CDN）
+* 优化请求（DNS预解析、减少Cookie传输、开启Gzip压缩、使用CDN，避免HTTP重定向）
 * 优化渲染（懒加载、避免重排重绘、SSR）
 * 优化代码（虚拟列表、DOM/style批量更新、事件委托、垃圾回收、web worker）
 * 优化打包（webpack：dll、happypack、压缩代码、tree shaking、scope hoisting、code splitting）
