@@ -20,3 +20,17 @@ var o = {
     }
 }
 o.func();   // 10
+
+
+
+var name = 'Windows';
+var object = {
+    name: 'Mac',
+    getName: function () {
+        return function () {
+            return this.name;
+        }
+    }
+}
+
+object.getName()()
