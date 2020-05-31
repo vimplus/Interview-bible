@@ -57,3 +57,4 @@
 * 优化渲染（懒加载、避免重排重绘、SSR）
 * 优化代码（虚拟列表、DOM/style批量更新、事件委托、垃圾回收、web worker）
 * 优化打包（webpack：dll、happypack、压缩代码、tree shaking、scope hoisting、code splitting）
+

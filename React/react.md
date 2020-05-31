@@ -178,6 +178,8 @@ A：因为依赖一直不变化，callback 不会二次执行。
 
 
 ## React与Vue的区别？
+* Vue与Angular属于MVVM框架，具有双向绑定，主要处理数据与UI之间的解决方案；React在这基础上还解决了更多的问题，比如Virtual DOM解决跨平台的问题，引入Fiber调度优化页面性能。
+* React针对原生事件做了合成优化，Vue只是代理原生事件。
 
 * 监听数据变化的实现原理不同
     Vue：Object.defineProperty，Vue3.0采用的Proxy；
@@ -198,8 +200,6 @@ A：因为依赖一直不变化，callback 不会二次执行。
     - react是双指针，vue是单指针；
     - vue是在`defineProperty`的基础上做的diff;
     - react是在`setState`之后做的diff;
-
-* React针对原生事件做了合成优化，Vue只是代理原生事件。
 
 ## React事件机制
 > https://toutiao.io/posts/28of14w/preview
