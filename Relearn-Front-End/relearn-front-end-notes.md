@@ -104,11 +104,71 @@ this 是执行上下文中很重要的一个组成部分。同一个函数调用
 > 文法是编译原理中对语言的写法的一种规定，一般来说，文法分成词法和语法两种。
 > 词法规定了语言的最小语义单元：token，可以翻译成“标记”或者“词”。
 > JS中的词法分析中会得到的不同类型的token，JS语言特性中的一些特殊token需要根据语法分析并回传递标志来判断具体如何分词。
-> token包括：空白符号 Whitespace、换行符 LineTerminator、注释 Comment、标识符名称 IdentifierName、符号 Punctuator、数字直接量 NumericLiteral、字符串直接量 StringLiteral、正则表达式直接量 RegularExpressionLiteral、字符串模板 Template
+
+**token包括：**
+* 空白符号 Whitespace
+* 换行符 LineTerminator
+* 注释 Comment
+* 标识符名称 IdentifierName
+* 符号 Punctuator
+* 数字直接量 NumericLiteral
+* 字符串直接量 StringLiteral
+* 正则表达式直接量 RegularExpressionLiteral
+* 字符串模板 Template
 
 JavaScript中的 `.` (点)有两种含义，一种是代表一个小数，一种是调用方法。
-
 12.toString() 会被解析成 12.（数字字面量） 和 toString()。（一个省略了小数后面部分的数字和一个方法）。
+
+
+### 到底要不要写分号呢？
+个人观点，写比不写好。
+
+#### 自动插入分号规则
+自动插入分号规则其实独立于所有的语法产生式定义，它的规则说起来非常简单，只有三条：
+
+* 要有换行符，且下一个符号是不符合语法的，那么就尝试插入分号。
+* 有换行符，且语法中规定此处不能有换行符，那么就自动插入分号。
+* 源代码结束处，不能形成完整的脚本或者模块结构，那么就自动插入分号。
+
+#### no LineTerminator here 规则：
+
+* 带标签的continue语句，不能在continue后插入换行；
+* 带标签的break语句，不能在break后插入换行；
+* return后不能插入换行；
+* 后自增、后自减运算符前不能插入换行；
+* throw和Exception之间不能插入换行；
+* 凡是async关键字后都不能插入换行；
+* 箭头函数的箭头前，也不能插入换行；
+* yield之后，也不能插入换行。
+
+#### 不写分号需要注意的情况：
+
+* 以括号开头的语句；
+* 以数组开头的语句；
+* 以正则表达式开头的语句；
+* 以Template开头的语句；
+
+### 脚本和模块
+JavaScript 有两种源文件，一种叫做脚本，一种叫做模块。
+脚本是可以由浏览器或者 node 环境引入执行的，而模块只能由 JavaScript 代码用 import 引入执行。
+
+从概念上，我们可以认为脚本具有主动性的 JavaScript 代码段，是控制宿主完成一定任务的代码；而模块是被动性的 JavaScript 代码段，是等待被调用的库。
+
+脚本：语句
+模块：import声明、export声明、语句
+
+### 预处理
+JavaScript 执行前，会对脚本、模块和函数体中的语句进行预处理。预处理过程将会提前处理 var、函数声明、class、const 和 let 这些语句，以确定其中变量的意义。
+
+注：
+* let和const也会预处理，但没有变量提升。
+* 在 class 声明之前使用 class 名，会抛错。
+* class 声明也是会被预处理的，它会在作用域中创建变量，并且要求访问它时抛出错误。
+
+### 指令序言机制
+"use strict"是 JavaScript 标准中规定的唯一一种指令序言。
+
+
 
 
 
