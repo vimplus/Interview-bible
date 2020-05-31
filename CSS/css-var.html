@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <style>
+        :root {
+            --bg-color: #ccc;
+            --main-color: #09c;
+        }
+        body {
+            background: var(--bg-color);
+        }
+        .common {
+            --common-color: #f00;
+            /* header-color 并没有被设定 */
+        }
+        
+        .common .header {
+            width: 1000px;
+            height: 100px;
+            margin: 0 auto;
+            background: var(--header-color, #6c0);  /* 第二个参数为备选值, 此处 color 被回退到 #6c0 */
+        }
+        .main {
+            width: 1000px;
+            height: 300px;
+            margin: 0 auto;
+            background: var(--main-color);
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <div class="common">
+        <div class="header"></div>
+        <div class="main"></div>
+    </div>
+</body>
+</html>
