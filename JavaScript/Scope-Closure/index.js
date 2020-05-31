@@ -19,6 +19,18 @@ function say() {
     console.log(a);
 }
 
+
 var c = 3;
 function c() {};
 console.log(c);
+
+
+//块级作用域
+try {
+    let x = 1;
+    const y = 2;
+} catch (error) {
+    
+}
+console.log(x);
+console.log(y);
